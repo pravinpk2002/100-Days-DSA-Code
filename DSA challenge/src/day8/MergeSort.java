@@ -39,7 +39,7 @@ public class MergeSort extends CommonMethods {
     }
     public static void main(String[] args) {
         MergeSort mergeSort=new MergeSort();
-        int arr[]={38,27,43,10};
+        int arr[]={38,27,5,43,10};
 
         System.out.println("Array before sort : ");
         mergeSort.display(arr);
