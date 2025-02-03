@@ -1,28 +1,37 @@
 package day90;
 
 class Solution {
-
-//    424. Longest Repeating Character Replacement
-    public int characterReplacement(String s, int k) {
-        int[] count = new int[26];
-        int maxCount = 0;
-        int maxLength = 0;
-
+//    1248. Count Number of Nice Subarrays
+    public int numberOfSubarrays(int[] nums, int k) {
+        int count = 0, oddCount = 0, result = 0;
         int left = 0;
 
-        for (int right = 0; right < s.length(); right++) {
-            count[s.charAt(right) - 'A']++;
-            maxCount = Math.max(maxCount, count[s.charAt(right) - 'A']);
+        for (int right = 0; right < nums.length; right++) {
+
+            if (nums[right] % 2 == 1) {
+                oddCount++;
+            }
 
 
-            while (right - left + 1 - maxCount > k) {
-                count[s.charAt(left) - 'A']--;
+            while (oddCount > k) {
+                if (nums[left] % 2 == 1) {
+                    oddCount--;
+                }
                 left++;
             }
 
-            maxLength = Math.max(maxLength, right - left + 1);
+
+            int temp = left;
+            while (oddCount == k && nums[temp] % 2 == 0) {
+                result++;
+                temp++;
+            }
+
+            if (oddCount == k) {
+                result++;
+            }
         }
 
-        return maxLength;
+        return result;
     }
 }
